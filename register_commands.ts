@@ -4,17 +4,11 @@ const { Routes } = require('discord-api-types/v9')
 import 'dotenv/config'
 
 const commands = [
-	new SlashCommandBuilder().setName('ping').setDescription('Odpowiadam pong!'),
-	new SlashCommandBuilder().setName('stalking').setDescription('Włącz stalkowanie!'),
-	new SlashCommandBuilder().setName('konfiguracja').setDescription('Uruchom proces konfiguracji bota.'),
 	new SlashCommandBuilder()
-		.setName('ship')
-		.setDescription('Sprawdź czy twój wybranek do Ciebie pasuje!')
+		.setName('warn')
+		.setDescription('Ostrzeż jakiegoś kierowcę!')
 		.addMentionableOption(option =>
-			option.setName('partner_1').setRequired(true).setDescription('Pierwsza osoba do zestawienia')
-		)
-		.addMentionableOption(option =>
-			option.setName('partner_2').setRequired(true).setDescription('Druga osoba do zestawienia')
+			option.setName('kierowca').setDescription('Kierowca, którego mam ostrzec.').setRequired(true)
 		),
 ].map(command => command.toJSON())
 

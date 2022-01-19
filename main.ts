@@ -1,4 +1,4 @@
-import Discord, { Client, Intents, MessageSelectMenu } from 'discord.js'
+import Discord, { Client, Intents } from 'discord.js'
 import 'dotenv/config'
 import path from 'path'
 import fs from 'fs'

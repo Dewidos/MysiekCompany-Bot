@@ -229,6 +229,8 @@ export default async function (message: Message<boolean>) {
 								`**Nie umiem znaleźć kierowcy o danym nicku!**\nNick z TrucksBook: ${message.author.username}\nLink do trasy: ${URL}\n*Trasa tej osoby została zaliczona jako wyścig. Sprawdźcie jej przypadek i w razie potrzeby wystawcie ostrzeżenie.*`
 							)
 						} else {
+							if (!warnCandidates.first()?.roles.cache.has(process.env.DRIVER_ROLE!)) return
+
 							warnIssuer(warnCandidates.first()!)
 								.then(async reply => {
 									if (reply.includes('3'))

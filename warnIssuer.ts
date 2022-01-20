@@ -3,6 +3,8 @@ import 'dotenv/config'
 
 export default async function (driver: GuildMember): Promise<string> {
 	return new Promise<string>((resolve, reject) => {
+		if (!driver.roles.cache.has(process.env.DRIVER_ROLE!)) reject()
+
 		driver.guild?.channels
 			.fetch(process.env.WARN_CHANNEL!)
 			.then(async channel => {

@@ -32,7 +32,7 @@ export default async function (message: Message<boolean>) {
 								if (!channel?.isText()) return
 
 								const driverCandidates = members.filter(
-									member => member.displayName.toLocaleLowerCase() === message.member?.displayName.toLocaleLowerCase()
+									member => member.displayName.toLocaleLowerCase() === message.author.username.toLocaleLowerCase()
 								)
 
 								if (driverCandidates.size !== 1) {
@@ -42,7 +42,7 @@ export default async function (message: Message<boolean>) {
 											if (!channel?.isText()) return
 
 											await channel.send(
-												`**Nie umiem znaleźć kierowcy o danym nicku!**\nNick z TrucksBook: ${message.member?.displayName}\nLink do trasy: ${URL}\n*Osoba ta przejechała trasę nie pochodzącą z Dyspozytorni. Sprawdźcie jej przypadek i w razie potrzeby pouczcie ją o tym.*`
+												`**Nie umiem znaleźć kierowcy o danym nicku!**\nNick z TrucksBook: ${message.author.username}\nLink do trasy: ${URL}\n*Osoba ta przejechała trasę nie pochodzącą z Dyspozytorni. Sprawdźcie jej przypadek i w razie potrzeby pouczcie ją o tym.*`
 											)
 										})
 										.catch(console.error)
@@ -96,7 +96,7 @@ export default async function (message: Message<boolean>) {
 
 												const driverCandidates = members.filter(
 													member =>
-														member.displayName.toLocaleLowerCase() === message.member?.displayName.toLocaleLowerCase()
+														member.displayName.toLocaleLowerCase() === message.author.username.toLocaleLowerCase()
 												)
 
 												if (driverCandidates.size !== 1) {
@@ -106,7 +106,7 @@ export default async function (message: Message<boolean>) {
 															if (!channel?.isText()) return
 
 															await channel.send(
-																`**Nie umiem znaleźć kierowcy o danym nicku!**\nNick z TrucksBook: ${message.member?.displayName}\nLink do trasy: ${URL}\n*Osoba ta uszkodziła ładunek w ${damagePercent} procentach. Sprawdźcie jej przypadek i w razie potrzeby poproście ją o napisanie wyjaśnienia.*`
+																`**Nie umiem znaleźć kierowcy o danym nicku!**\nNick z TrucksBook: ${message.author.username}\nLink do trasy: ${URL}\n*Osoba ta uszkodziła ładunek w ${damagePercent} procentach. Sprawdźcie jej przypadek i w razie potrzeby poproście ją o napisanie wyjaśnienia.*`
 															)
 														})
 														.catch(console.error)
@@ -166,7 +166,7 @@ export default async function (message: Message<boolean>) {
 
 												const driverCandidates = members.filter(
 													member =>
-														member.displayName.toLocaleLowerCase() === message.member?.displayName.toLocaleLowerCase()
+														member.displayName.toLocaleLowerCase() === message.author.username.toLocaleLowerCase()
 												)
 
 												if (driverCandidates.size !== 1) {
@@ -176,7 +176,7 @@ export default async function (message: Message<boolean>) {
 															if (!channel?.isText()) return
 
 															await channel.send(
-																`**Nie umiem znaleźć kierowcy o danym nicku!**\nNick z TrucksBook: ${message.member?.displayName}\nLink do trasy: ${URL}\n*Osoba ta osiągneła zbyt wysokie średnie spalanie. Sprawdźcie jej przypadek i w razie potrzeby poinformujcie ją o tym.*`
+																`**Nie umiem znaleźć kierowcy o danym nicku!**\nNick z TrucksBook: ${message.author.username}\nLink do trasy: ${URL}\n*Osoba ta osiągneła zbyt wysokie średnie spalanie. Sprawdźcie jej przypadek i w razie potrzeby poinformujcie ją o tym.*`
 															)
 														})
 														.catch(console.error)
@@ -204,7 +204,7 @@ export default async function (message: Message<boolean>) {
 										if (!channel?.isText()) return
 
 										await channel.send(
-											`**Podejrzenie użycia teleportu!**\nNick z TrucksBook: ${message.member?.displayName}\nLink do trasy: ${URL}\n*Ta osoba przejechała mniejszy dystans niż się spodziewano. Sprawdźcie jej przypadek i w razie potrzeby wystawcie ostrzeżenie.*`
+											`**Podejrzenie użycia teleportu!**\nNick z TrucksBook: ${message.author.username}\nLink do trasy: ${URL}\n*Ta osoba przejechała mniejszy dystans niż się spodziewano. Sprawdźcie jej przypadek i w razie potrzeby wystawcie ostrzeżenie.*`
 										)
 									})
 									.catch(console.error)
@@ -216,7 +216,7 @@ export default async function (message: Message<boolean>) {
 
 			if (content.includes('wyścig')) {
 				const warnCandidates = members.filter(
-					member => member.displayName.toLocaleLowerCase() === message.member?.displayName.toLocaleLowerCase()
+					member => member.displayName.toLocaleLowerCase() === message.author.username.toLocaleLowerCase()
 				)
 
 				message.guild?.channels
@@ -226,19 +226,19 @@ export default async function (message: Message<boolean>) {
 
 						if (warnCandidates.size !== 1) {
 							await channel.send(
-								`**Nie umiem znaleźć kierowcy o danym nicku!**\nNick z TrucksBook: ${message.member?.displayName}\nLink do trasy: ${URL}\n*Trasa tej osoby została zaliczona jako wyścig. Sprawdźcie jej przypadek i w razie potrzeby wystawcie ostrzeżenie.*`
+								`**Nie umiem znaleźć kierowcy o danym nicku!**\nNick z TrucksBook: ${message.author.username}\nLink do trasy: ${URL}\n*Trasa tej osoby została zaliczona jako wyścig. Sprawdźcie jej przypadek i w razie potrzeby wystawcie ostrzeżenie.*`
 							)
 						} else {
 							warnIssuer(warnCandidates.first()!)
 								.then(async reply => {
 									if (reply.includes('3'))
 										await channel.send(
-											`**Kierowca przekroczył dozwoloną liczbę ostrzeżeń!**\nNick z TrucksBook: ${message.member?.displayName}\nLink do trasy: ${URL}\n*Trasa tej osoby została zaliczona jako wyścig. Wystawienie ostrzeżenia nie jest możliwe, ze względu na osiągnięcie ich maksymalnej ilości. Rozważcie wyrzucenie tej osoby z firmy.*`
+											`**Kierowca przekroczył dozwoloną liczbę ostrzeżeń!**\nNick z TrucksBook: ${message.author.username}\nLink do trasy: ${URL}\n*Trasa tej osoby została zaliczona jako wyścig. Wystawienie ostrzeżenia nie jest możliwe, ze względu na osiągnięcie ich maksymalnej ilości. Rozważcie wyrzucenie tej osoby z firmy.*`
 										)
 								})
 								.catch(async () => {
 									await channel.send(
-										`**Nie umiem wystawić ostrzeżenia!**\nNick z TrucksBook: ${message.member?.displayName}\nLink do trasy: ${URL}\n*Trasa tej osoby została zaliczona jako wyścig. Sprawdźcie jej przypadek i w razie potrzeby wystawcie ostrzeżenie.*`
+										`**Nie umiem wystawić ostrzeżenia!**\nNick z TrucksBook: ${message.author.username}\nLink do trasy: ${URL}\n*Trasa tej osoby została zaliczona jako wyścig. Sprawdźcie jej przypadek i w razie potrzeby wystawcie ostrzeżenie.*`
 									)
 								})
 						}
